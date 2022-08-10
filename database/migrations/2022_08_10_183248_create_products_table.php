@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('sku')->unique();
             $table->string('name');
             $table->text('description');
-            $table->float('price', 8, 2);
+            $table->decimal('price', $precision = 8, $scale = 2);
             $table->integer('quantity');
             $table->boolean('state')->default(0);
         });
