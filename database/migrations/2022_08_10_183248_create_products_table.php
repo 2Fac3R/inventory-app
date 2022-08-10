@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger('category_id');
+            $table->foreignId('category_id')->constrained('categories');
 
             $table->string('sku')->unique();
             $table->string('name');
@@ -25,8 +25,6 @@ class CreateProductsTable extends Migration
             $table->float('price', 8, 2);
             $table->integer('quantity');
             $table->boolean('state')->default(0);
-
-            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
