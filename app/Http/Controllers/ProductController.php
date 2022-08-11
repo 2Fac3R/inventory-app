@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -13,9 +16,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return Inertia::render('Products/Index', [
+            'products' => Product::latest()
+                ->where('name', 'LIKE', "%$request->q%")
+                ->get(),
+        ]);
     }
 
     /**
@@ -25,7 +32,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Products/Create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -34,9 +43,11 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        //
+        $product = Product::create($request->all());
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -47,7 +58,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return Inertia::render('Products/Show', [
+            'product' => $product->load('category'),
+        ]);
     }
 
     /**
@@ -58,7 +71,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return Inertia::render('Products/Edit', [
+            'product' => $product->load('category'),
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -68,9 +84,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -81,6 +99,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }
