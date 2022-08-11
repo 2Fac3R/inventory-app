@@ -10,13 +10,21 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'sku',
+        'name',
+        'description',
+        'price',
+        'quantity',
+        'state',
+    ];
+
     /**
-     * The categories that belong to the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * Get the category that owns the Product
      */
-    public function categories(): BelongsToMany
+    public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
