@@ -43,9 +43,9 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->all());
+        $product = Product::create($request->validated());
 
         return redirect()->route('products.index');
     }
@@ -84,9 +84,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $product->update($request->validated());
 
         return redirect()->route('products.edit', $product);
     }

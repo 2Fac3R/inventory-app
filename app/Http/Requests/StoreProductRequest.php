@@ -23,14 +23,15 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
+        // |
         return [
             'category_id' => 'required',
-            'sku' => 'required',
+            'sku' => 'required|unique:products|size:8',
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
             'quantity' => 'required',
-            'state' => 'required',
+            'state' => 'required|boolean',
         ];
     }
 }
