@@ -4,10 +4,13 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Category;
 
 class CategoryTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_has_many_products()
     {
         $category = Category::factory()->create();
