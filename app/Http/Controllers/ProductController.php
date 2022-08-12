@@ -88,7 +88,7 @@ class ProductController extends Controller
     {
         $product->update($request->all());
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.edit', $product);
     }
 
     /**
