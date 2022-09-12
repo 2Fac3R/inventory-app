@@ -3,9 +3,9 @@
 namespace Tests\Unit\Models;
 
 use Tests\TestCase;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Category;
 
 class CategoryTest extends TestCase
 {
