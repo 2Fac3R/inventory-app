@@ -2,7 +2,7 @@
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="text-xl font-semibold leading-tight text-gray-800">
-        Módulo de Productos
+        Products Manager
       </h2>
     </template>
 
@@ -11,17 +11,25 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
           <div class="md:col-span-1">
             <div class="px-4 sm:px0">
-              <h3 class="text-lg text-gray-900">Crear un producto</h3>
+              <h3 class="text-lg text-gray-900">Create a new product</h3>
               <p class="text-sm text-gray-600">
-                Luego de crear la podrás editar
+                You can edit a product after you create one
               </p>
             </div>
           </div>
           <div class="mt-5 md:col-span-2 md:mt-0">
-            <div class="p-4 bg-white shadow md:rounded-md">
-              <form @submit.prevent="submit">
+            <div class="p-6 bg-white shadow md:rounded-md">
+              <form @submit.prevent="submit" class="flex flex-col space-y-2">
+                <label class="self-end block text-sm font-medium text-gray-700">
+                  Stock
+                </label>
+                <input
+                  type="checkbox"
+                  class="self-end rounded-md shadow-sm form-input"
+                  v-model="form.state"
+                />
                 <label class="block text-sm font-medium text-gray-700">
-                  Categoría
+                  Category
                 </label>
                 <select
                   class="w-full rounded-md shadow-sm form-input"
@@ -45,7 +53,7 @@
                   placeholder="A stock-keeping unit (SKU)"
                 />
                 <label class="block text-sm font-medium text-gray-700">
-                  Nombre
+                  Name
                 </label>
                 <input
                   type="text"
@@ -53,14 +61,14 @@
                   v-model="form.name"
                 />
                 <label class="block text-sm font-medium text-gray-700">
-                  Descripción
+                  Description
                 </label>
                 <textarea
                   class="w-full rounded-md shadow-sm form-input"
                   v-model="form.description"
                 ></textarea>
                 <label class="block text-sm font-medium text-gray-700">
-                  Precio
+                  Price
                 </label>
                 <input
                   type="number"
@@ -69,25 +77,18 @@
                   v-model="form.price"
                 />
                 <label class="block text-sm font-medium text-gray-700">
-                  Cantidad
+                  Quantity
                 </label>
                 <input
                   type="number"
                   class="w-full rounded-md shadow-sm form-input"
                   v-model="form.quantity"
                 />
-                <label class="block text-sm font-medium text-gray-700">
-                  Stock
-                </label>
-                <input
-                  type="checkbox"
-                  class="w-full rounded-md shadow-sm form-input"
-                  v-model="form.state"
-                />
+
                 <button
-                  class="px-4 py-2 font-bold text-white bg-blue-500 rounded-md  hover:bg-blue-700"
+                  class="px-4 py-4 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700"
                 >
-                  Crear
+                  Create
                 </button>
               </form>
             </div>

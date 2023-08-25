@@ -2,7 +2,7 @@
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="text-xl font-semibold leading-tight text-gray-800">
-        Módulo de Productos
+        Products Manager
       </h2>
     </template>
 
@@ -11,25 +11,27 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
           <div class="md:col-span-1">
             <div class="px-4 sm:px0">
-              <h3 class="text-xl text-gray-900">Detalle de un producto</h3>
-              <p class="text-lg text-gray-800">{{ product.name }}</p>
-              <p class="text-sm text-blue-600">${{ product.price }}</p>
+              <h3 class="my-2 text-xl text-black">Product details</h3>
+              <p class="text-lg text-gray-600">{{ product.name }}</p>
+              <p class="text-sm text-blue-600">
+                ${{ formatPrice(product.price) }}
+              </p>
               <p :class="product.state ? 'text-green-600' : 'text-red-600'">
-                {{ product.state ? "Disponible" : "No disponible" }}
+                {{ product.state ? "Available" : "Not available" }}
               </p>
               <p class="text-sm italic text-gray-700">SKU: {{ product.sku }}</p>
               <p class="text-sm text-gray-700">
-                Categoría: {{ product.category.name }}
+                Category: {{ product.category.name }}
               </p>
             </div>
           </div>
-          <div class="mt-5 md:col-span-2 md:mt-0">
+          <div class="mt-4 md:col-span-2 md:mt-0">
             <div class="p-4 bg-white shadow md:rounded-md">
               <p>{{ product.description }}</p>
 
               <hr class="my-6" />
 
-              <Link :href="route('products.index')"> Volver </Link>
+              <Link :href="route('products.index')"> Back </Link>
             </div>
           </div>
         </div>
@@ -49,6 +51,14 @@ export default {
   },
   props: {
     product: Object,
+  },
+  methods: {
+    formatPrice(value) {
+      const formattedValue = Number(value)
+        .toFixed(2)
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return formattedValue;
+    },
   },
 };
 </script>
