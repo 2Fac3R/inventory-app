@@ -1,95 +1,112 @@
-# inventory-app
-## Description
+# Inventory App
 
-This project implements a product inventory system. A complete system has been developed, encompassing the backend, its functionalities, and corresponding tests. The frontend portion is built with Vue.js, utilizing Inertia.js to seamlessly connect with Laravel, complemented by the styling prowess of TailwindCSS.
+[![Laravel](https://img.shields.io/badge/Laravel-8.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![Vue.js](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vue.js)](https://vuejs.org)
+[![Inertia.js](https://img.shields.io/badge/Inertia.js-0.5-9553E9?style=for-the-badge)](https://inertiajs.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker)](https://www.docker.com)
 
-Stack:
+A comprehensive product inventory management system built with Laravel 8, Vue 3, and Inertia.js. This application bridges the backend and frontend seamlessly to provide a modern SPA experience.
 
-* PHP (7.3) + Laravel (8)
-* Inertia.js: Build single-page apps, without building an API
-* Vue.js: The Progressive JavaScript Framework
-* HTML + CSS (TailwindCSS Framework)
+## 🚀 Quick Start (Docker)
 
+The fastest way to get the application running is using Docker Compose.
 
-## Installation
+1. **Clone and Enter:**
+   ```bash
+   git clone https://github.com/2Fac3R/inventory-app.git
+   cd inventory-app
+   ```
 
-Clone the repository
+2. **Launch Environment:**
+   ```bash
+   docker-compose up -d --build
+   ```
+   *This will automatically install dependencies, set up Nginx, PHP-FPM, MySQL, and run migrations.*
 
-    git clone https://github.com/2Fac3R/inventory-app.git
+3. **Seed Database:**
+   ```bash
+   docker-compose exec app php artisan db:seed
+   ```
 
-Switch to the repo folder
+4. **Access:**
+   Visit [http://localhost:8000](http://localhost:8000)
 
-    cd inventory-app
+---
 
-Install all the dependencies using composer
+## 🛠 Manual Installation
 
-    composer install
+If you prefer to run the application locally:
 
-Rename ".env.example" to ".env" and add your database settings.
-    
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=<your-database>
-    DB_USERNAME=<your-username>
-    DB_PASSWORD=<your-password>
+### Prerequisites
+- PHP 7.3+ & Composer
+- Node.js & npm
+- MySQL
 
-Run migrations
+### Steps
+1. **Install Dependencies:**
+   ```bash
+   composer install
+   npm install
+   ```
 
-    php artisan migrate
+2. **Configure Environment:**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   *Edit `.env` to set your database credentials.*
 
-Run seeder
+3. **Database Migration & Seeding:**
+   ```bash
+   php artisan migrate --seed
+   ```
 
-    php artisan db:seed
+4. **Build Assets:**
+   ```bash
+   npm run dev
+   # or
+   npm run watch
+   ```
 
-This will run the following code
+5. **Start Server:**
+   ```bash
+   php artisan serve
+   ```
 
-    \App\Models\User::factory(3)->create();  // Creates 3 users
-    \App\Models\Category::factory(10)->create();  // Creates 10 categories
-    \App\Models\Product::factory(200)->create();  // Creates 200 products
+---
 
-Start the local development server
+## 📖 Usage
 
-    php artisan serve
+- **Dashboard:** `http://localhost:8000/dashboard`
+- **Product Management:** `http://localhost:8000/products`
+- **Registration:** `http://localhost:8000/register`
+- **Login:** `http://localhost:8000/login`
 
-## Usage
+---
 
-Log in or create a new user, user profile settings...
+## 🧪 Testing
 
-    http://127.0.0.1:8000/dashboard
-    http://127.0.0.1:8000/register
-    http://127.0.0.1:8000/login
+The project includes comprehensive Feature and Unit tests using PHPUnit.
 
-List of products
+**Local:**
+```bash
+php artisan test
+```
 
-    http://127.0.0.1:8000/products
+**Docker:**
+```bash
+docker-compose exec app php artisan test
+```
 
-Create a new product
+---
 
-    http://127.0.0.1:8000/products/create
+## 🤝 Contributing
 
-Get a product by id
-
-    http://127.0.0.1:8000/products/{id}>
-
-Edit a product by id
-
-    http://127.0.0.1:8000/products/{id}/edit>
-
-
-## Frontend with Vue.js
-
-If you wish to make changes in vue code, first install dependencies with npm and run dev.
-
-    npm install
-    npm run dev
-
-Keep the server running for changes.
-
-    npm run watch
-
-
-## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Any feedback is appreciated.
+---
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

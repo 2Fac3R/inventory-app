@@ -37,7 +37,7 @@ The **Inventory App** is a product inventory management system built with the La
    - Configure your database settings in `.env`.
    - Generate application key:
      ```bash
-     php artisan key_generate
+     php artisan key:generate --no-interaction
      ```
 4. **Database Setup:**
    - Run migrations and seeders:
